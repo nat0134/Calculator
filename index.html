@@ -12,110 +12,97 @@
         <table>
             <tr>
                 <td colspan="4">
-                    <input type="text" name="input-display" value="0">
+                    <input type="text" id="input-display" value="0" \required>
                 </td>
             </tr>
             <tr class="first-row">
                 <td>
-                    <button class="calc-btn calc-func" name="mem-clear">mc</button>
+                    <button class="calc-btn calc-func" name="clear">AC</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-func" name="mem-recall">mr</button>
+                    <button class="calc-btn calc-func" name="erase">&#9003;</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-func" name="mem-minus">m-</button>
+                    <button class="calc-btn calc-op" name="percent" value="%">%</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-func" name="mem-plus">m+</button>
+                    <button class="calc-btn calc-op" name="division" value="/">&divide;</button>
                 </td>
             </tr>
             <tr class="second-row">
                 <td>
-                    <button class="calc-btn calc-func" name="clear">AC</button>
+                    <button class="calc-btn calc-num" value="7">7</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-func" name="sq-root">&Sqrt;x</button>
+                    <button class="calc-btn calc-num" value="8">8</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-func" name="percent">%</button>
+                    <button class="calc-btn calc-num" value="9">9</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-op" name="division">&divide;</button>
+                    <button class="calc-btn calc-op" name="multiply" value="*">&times;</button>
                 </td>
             </tr>
             <tr class="third-row">
                 <td>
-                    <button class="calc-btn calc-num" name="num-seven">7</button>
+                    <button class="calc-btn calc-num" value="4">4</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-num" name="num-eight">8</button>
+                    <button class="calc-btn calc-num" value="5">5</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-num" name="num-nine">9</button>
+                    <button class="calc-btn calc-num" value="6">6</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-op" name="multiply">x</button>
+                    <button class="calc-btn calc-op" name="subtract" value="-">&minus;</button>
                 </td>
             </tr>
             <tr class="fourth-row">
                 <td>
-                    <button class="calc-btn calc-num" name="num-four">4</button>
+                    <button class="calc-btn calc-num" value="1">1</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-num" name="num-five">5</button>
+                    <button class="calc-btn calc-num" value="2">2</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-num" name="num-six">6</button>
+                    <button class="calc-btn calc-num" value="3">3</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-op" name="subtract">-</button>
+                    <button class="calc-btn calc-op" name="add" value="+">+</button>
                 </td>
             </tr>
             <tr class="fifth-row">
                 <td>
-                    <button class="calc-btn calc-num" name="num-one">1</button>
-                </td>
-                <td>
-                    <button class="calc-btn calc-num" name="num-two">2</button>
-                </td>
-                <td>
-                    <button class="calc-btn calc-num" name="num-three">3</button>
-                </td>
-                <td>
-                    <button class="calc-btn calc-op" name="addition">+</button>
-                </td>
-            </tr>
-            <tr class="sixth-row">
-                <td>
-                    <button class="calc-btn calc-num" name="num-zero">0</button>
+                    <button class="calc-btn calc-num" value="0">0</button>
                 </td>
                 <td>
                     <button class="calc-btn calc-num" name="decimal">.</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-num" name="negative">+/-</button>
+                    <button class="calc-btn calc-op" name="negative">+/&minus;</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-equal" name="equals">=</button>
+                    <button class="calc-btn calc-equal" name="equal">=</button>
                 </td>
             </tr>
-            <tr class="seventh-row">
+            <tr class="sixth-row">
                 <td>
-                    <button class="calc-btn calc-num" name="pi">&pi;</button>
+                    <button class="calc-btn calc-op" name="exponents" value="^">x<sup>y</sup></button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-op" name="exponents">x<sup>y</sup></button>
+                    <button class="calc-btn calc-op" name="sq-root" value="sqrt">&Sqrt;x</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-func" name="two-dec">R2</button>
+                    <button class="calc-btn calc-op" name="open-bracket" value="(">(</button>
                 </td>
                 <td>
-                    <button class="calc-btn calc-func" name="integer">R0</button>
+                    <button class="calc-btn calc-op" name="close-bracket" value=")">)</button>
                 </td>
             </tr>
         </table>
         <div id="footer">powered by &copy; Natalia Lee</div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

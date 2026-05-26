@@ -5,7 +5,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    height: 800px;
+    height: 600px;
     width: 400px;
     margin: 0 auto;
 }
@@ -17,7 +17,7 @@ body {
 }
 
 #container {
-    height: 465px;
+    height: 440px;
     width: 250px;
     border: 1px solid green;
     border-radius: 10px;
@@ -57,18 +57,17 @@ input {
     border-radius: 5px;
     font-size: 1.5em;
     background-color: rgb(223, 246, 232);
+    cursor: pointer;
 }
 
 #footer {
-    margin-top: 5px;
+    margin-top: 10px;
+    font-size: 12px;
 }
 
-.first-row button {
-    height: 40px;
-}
-
-.seventh-row button {
-    height: 40px;
+.second-row .calc-num {
+    background-color: rgb(160, 248, 197);
+    font-weight: bold;
 }
 
 .third-row .calc-num {
@@ -86,13 +85,8 @@ input {
     font-weight: bold;
 }
 
-.sixth-row .calc-num {
+.fifth-row .calc-op {
     background-color: rgb(160, 248, 197);
-    font-weight: bold;
-}
-
-.second-row .calc-op {
-    background-color: rgb(108, 210, 150);
     font-weight: bold;
 }
 
@@ -106,12 +100,22 @@ input {
     font-weight: bold;
 }
 
-.fifth-row .calc-op {
+.second-row .calc-op {
     background-color: rgb(108, 210, 150);
     font-weight: bold;
 }
 
-.sixth-row .calc-equal {
+.first-row .calc-op[name="division"] {
     background-color: rgb(108, 210, 150);
     font-weight: bold;
+}
+
+.fifth-row .calc-equal {
+    background-color: rgb(108, 210, 150);
+    font-weight: bold;
+}
+
+.calc-btn:active {
+    background-color: cadetblue;
+    transform:scale(0.95);
 }
