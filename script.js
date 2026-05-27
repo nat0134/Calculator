@@ -1,8 +1,9 @@
     function tokenize(expression) {
         const tokens = [];
         let current = "";
+        let prev = null;
         for (let i = 0; i < expression.length; i++) {
-            let prev = null;
+            prev = tokens[tokens.length - 1];
 
             if (expression.slice(i, i + 4) === "sqrt") {
                 tokens.push("sqrt");
@@ -10,7 +11,6 @@
             } else if (expression[i] === "-" && (prev === null ||
                        ["+", "-", "*", "/", "(", "^"].includes(prev))) {
                 tokens.push("neg");
-                prev = "neg";
                 continue;
             } else if (/\d/.test(expression[i]) || /\./.test(expression[i])) {
                 current += expression[i];
@@ -76,10 +76,18 @@
         tokens.forEach(token => {
             if (!isNaN(token)) {
                 numbers.push(Number(token));
+                if (operators[operators.length - 1] === "neg") {   
+                    const un = operators.pop();
+                    const n = numbers.pop();
+                    numbers.push(unaryCalculation(n, un));
+                }
+                if (operators[operators.length - 1] === "sqrt") {
+                    const un = operators.pop();
+                    const n = numbers.pop();
+                    numbers.push(unaryCalculation(n, un));
+                }
             } else if (token === "neg") {
-                if (numbers.length === 0) throw new Error("Missing operand");
-                const n = numbers.pop();
-                numbers.push(unaryCalculation(n, token));
+                operators.push(token);
             } else if (token === "%") {
                 if (numbers.length === 0) throw new Error("Missing operand");
                 const n = numbers.pop();
@@ -96,8 +104,8 @@
                 operators.pop();
                 if (operators[operators.length - 1] === "sqrt") {   
                     const un = operators.pop();
-                    const c = numbers.pop();
-                    numbers.push(unaryCalculation(c, un));
+                    const n = numbers.pop();
+                    numbers.push(unaryCalculation(n, un));
                 } 
             } else {
                 while (operators.length > 0 && 
@@ -128,7 +136,6 @@
     const clearBtn = document.querySelector('.calc-func[name="clear"]');
     const eraseBtn = document.querySelector('.calc-func[name="erase"]');
 
-    
     let expression = "";
     let result = 0;
   
@@ -155,6 +162,12 @@
     clearBtn.addEventListener("click", () => {
         inputDisplay.value = 0;
         expression = "";
+    });
+
+    eraseBtn.addEventListener("click", () => {
+        let current = expression.slice(0, -1);
+        inputDisplay.value = current;
+        expression = current;
     });
 
   
