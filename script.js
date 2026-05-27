@@ -126,7 +126,10 @@
             const a = numbers.pop();
             numbers.push(calculation(a, b, op));
         }
-        return numbers[0];
+
+        let result = numbers[0];
+        let roundedResult = result.toFixed(8);
+        return roundedResult;
     }
     
     const numBtn = document.querySelectorAll(".calc-num");
