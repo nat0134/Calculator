@@ -128,7 +128,7 @@
         }
 
         let result = numbers[0];
-        let roundedResult = result.toFixed(8);
+        let roundedResult = Math.round(result * 100000000) / 100000000;
         return roundedResult;
     }
     
