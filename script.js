@@ -3,23 +3,24 @@
         let current = "";
         let prev = null;
         for (let i = 0; i < expression.length; i++) {
-            prev = tokens[tokens.length - 1];
-
             if (expression.slice(i, i + 4) === "sqrt") {
                 tokens.push("sqrt");
                 i += 3;
-            } else if (expression[i] === "-" && (prev === null ||
-                       ["+", "-", "*", "/", "(", "^"].includes(prev))) {
-                tokens.push("neg");
-                continue;
             } else if (/\d/.test(expression[i]) || /\./.test(expression[i])) {
                 current += expression[i];
             } else if (/[-+*/^()%]/.test(expression[i])) {
                 if (current.length > 0) {
                     tokens.push(current);
+                    current = "";
                 }
-                tokens.push(expression[i]);
-                current = "";
+
+                prev = tokens[tokens.length - 1];
+                if (expression[i] === "-" && (prev === null ||
+                       ["+", "-", "*", "/", "(", "^"].includes(prev))) {
+                    tokens.push("neg");
+                } else {
+                    tokens.push(expression[i]);
+                }
             } else if (/\s/.test(expression[i])) {
                 continue;
             } else {
@@ -76,12 +77,9 @@
         tokens.forEach(token => {
             if (!isNaN(token)) {
                 numbers.push(Number(token));
-                if (operators[operators.length - 1] === "neg") {   
-                    const un = operators.pop();
-                    const n = numbers.pop();
-                    numbers.push(unaryCalculation(n, un));
-                }
-                if (operators[operators.length - 1] === "sqrt") {
+                if (operators.length > 0 && 
+                    (operators[operators.length - 1] === "neg" ||
+                    operators[operators.length - 1] === "sqrt")) {   
                     const un = operators.pop();
                     const n = numbers.pop();
                     numbers.push(unaryCalculation(n, un));
@@ -95,7 +93,8 @@
             } else if (token === "(") {
                 operators.push(token);
             } else if (token === ")") {
-                while (operators[operators.length - 1] !== "(") {   
+                while (operators[operators.length - 1] !== "(" &&
+                       operators.length > 0) {   
                     const op = operators.pop();
                     const b = numbers.pop();
                     const a = numbers.pop();
@@ -122,9 +121,15 @@
 
         while (operators.length > 0) {   
             const op = operators.pop();
-            const b = numbers.pop();
-            const a = numbers.pop();
-            numbers.push(calculation(a, b, op));
+            
+            if (op === "sqrt" || op === "neg" || op === "%") {
+                const n = numbers.pop();
+                numbers.push(unaryCalculation(n, op));
+            } else {
+                const b = numbers.pop();
+                const a = numbers.pop();
+                numbers.push(calculation(a, b, op));
+            }
         }
 
         let result = numbers[0];
@@ -172,5 +177,3 @@
         inputDisplay.value = current;
         expression = current;
     });
-
-  
