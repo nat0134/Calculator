@@ -1,11 +1,13 @@
     function tokenize(expression) {
         const tokens = [];
         let current = "";
-        let prev = null;
         for (let i = 0; i < expression.length; i++) {
             if (expression.slice(i, i + 4) === "sqrt") {
                 tokens.push("sqrt");
                 i += 3;
+            } else if (expression.slice(i, i + 3) === "neg") {
+                tokens.push("neg");
+                i += 2;
             } else if (/\d/.test(expression[i]) || /\./.test(expression[i])) {
                 current += expression[i];
             } else if (/[-+*/^()%]/.test(expression[i])) {
@@ -13,14 +15,7 @@
                     tokens.push(current);
                     current = "";
                 }
-
-                prev = tokens[tokens.length - 1];
-                if (expression[i] === "-" && (prev === null ||
-                       ["+", "-", "*", "/", "(", "^"].includes(prev))) {
-                    tokens.push("neg");
-                } else {
-                    tokens.push(expression[i]);
-                }
+                tokens.push(expression[i]);
             } else if (/\s/.test(expression[i])) {
                 continue;
             } else {
@@ -136,9 +131,18 @@
         let roundedResult = Math.round(result * 100000000) / 100000000;
         return roundedResult;
     }
+
+     function formatDisplay(expression) {
+        return expression
+            .replaceAll("neg", "-")
+            .replaceAll("sqrt", "√")
+            .replaceAll("*", "x")
+            .replaceAll("/", "÷");
+    }
     
     const numBtn = document.querySelectorAll(".calc-num");
     const opBtn = document.querySelectorAll(".calc-op");
+    const negBtn = document.querySelector(".calc-neg");
     const inputDisplay = document.querySelector("#input-display");
     const equalBtn = document.querySelector('.calc-equal[name="equal"]');
     const clearBtn = document.querySelector('.calc-func[name="clear"]');
@@ -150,15 +154,20 @@
     numBtn.forEach(btn => { 
         btn.addEventListener("click", () => {
             expression += btn.value;
-            inputDisplay.value = expression;
+            inputDisplay.value = formatDisplay(expression);
         });
     });
     
     opBtn.forEach(btn => { 
         btn.addEventListener("click", () => {
             expression += btn.value;
-            inputDisplay.value = expression;
+            inputDisplay.value = formatDisplay(expression);
         });
+    });
+   
+    negBtn.addEventListener("click", () => {
+        expression += negBtn.value;
+        inputDisplay.value = formatDisplay(expression);
     });
 
     equalBtn.addEventListener("click", () => {
@@ -174,6 +183,6 @@
 
     eraseBtn.addEventListener("click", () => {
         let current = expression.slice(0, -1);
-        inputDisplay.value = current;
+        inputDisplay.value = formatDisplay(current);
         expression = current;
     });
