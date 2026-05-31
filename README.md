@@ -52,18 +52,24 @@ Calculator/
 - Parenthesis handling for nested expressions
 - Evaluation using operator precedence rules
 - Real-time input display updates
+- Keyboard support
 
 ## Limitations
 
 - Expression editing is string-based rather than token-based
 - No support for variables or memory storage
+- No support for double negate function
 
-## Future Implementation
+## Known Bug
+
+- Keyboard support inducing persistent 'sqrt' on stack
+
+## Future Improvements
 
 - Refactor expression handling to full token based system
 - Improve unary operator handling and edge-case stability
-- Implement history and memory functions
-- Add support for advanced functions
+- Implement double negate function
+- Bug fix
 
 ## Author
 

@@ -262,4 +262,5 @@
 
         const btn = document.querySelector(`.calc-btn[value="${e.key}"]`);
         if (btn) return btn.click();
+
     });
